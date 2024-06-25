@@ -1,8 +1,10 @@
-const { addIncome } = require('../controllers/income');
-const { Router } = require('express')
+const { addIncome, getIncomes } = require('../controllers/income');
 
-const router=require('express').Router()
+const router = require('express').Router();
+
 
 router.post('/add-income', addIncome)
+    .get('/get-incomes', getIncomes)
+  
 
-module.exports=router
+module.exports = router
