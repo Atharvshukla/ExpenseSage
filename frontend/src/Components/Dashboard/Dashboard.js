@@ -68,65 +68,121 @@ function Dashboard() {
         </DashboardStyled>
     )
 }
-
 const DashboardStyled = styled.div`
-    .stats-con{
+    .stats-con {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         gap: 2rem;
-        .chart-con{
+
+        @media (max-width: 1200px) {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
+
+        .chart-con {
             grid-column: 1 / 4;
-            height: 400px;
-            .amount-con{
+            height: 100%;
+
+            @media (max-width: 1200px) {
+                grid-column: 1 / -1;
+            }
+
+            .amount-con {
                 display: grid;
                 grid-template-columns: repeat(4, 1fr);
                 gap: 2rem;
                 margin-top: 2rem;
-                .income, .expense{
-                    grid-column: span 2;
+
+                @media (max-width: 768px) {
+                    grid-template-columns: 1fr;
                 }
-                .income, .expense, .balance{
+
+                .income, .expense, .balance {
                     background: #FCF6F9;
                     border: 2px solid #FFFFFF;
                     box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
                     border-radius: 20px;
                     padding: 1rem;
-                    p{
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                    
+                    &:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+                    }
+
+                    p {
                         font-size: 3.5rem;
                         font-weight: 700;
+
+                        @media (max-width: 768px) {
+                            font-size: 2.5rem;
+                        }
                     }
                 }
 
-                .balance{
+                .income, .expense {
+                    grid-column: span 2;
+
+                    @media (max-width: 768px) {
+                        grid-column: span 1;
+                    }
+                }
+
+                .balance {
                     grid-column: 2 / 4;
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    p{
+
+                    @media (max-width: 768px) {
+                        grid-column: span 1;
+                    }
+
+                    p {
                         color: var(--color-green);
                         opacity: 0.6;
                         font-size: 4.5rem;
+
+                        @media (max-width: 768px) {
+                            font-size: 3rem;
+                        }
                     }
                 }
             }
         }
 
-        .history-con{
+        .history-con {
             grid-column: 4 / -1;
-            h2{
+
+            @media (max-width: 1200px) {
+                grid-column: 1 / -1;
+            }
+
+            h2 {
                 margin: 1rem 0;
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                font-size: 1.5rem;
+                color: #333;
             }
-            .salary-title{
+
+            .salary-title {
                 font-size: 1.2rem;
-                span{
+                margin-top: 2rem;
+                color: #555;
+
+                span {
                     font-size: 1.8rem;
+                    color: #333;
                 }
             }
-            .salary-item{
+
+            .salary-item {
                 background: #FCF6F9;
                 border: 2px solid #FFFFFF;
                 box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
@@ -135,13 +191,36 @@ const DashboardStyled = styled.div`
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                p{
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+                &:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+                }
+
+                p {
                     font-weight: 600;
                     font-size: 1.6rem;
+
+                    @media (max-width: 768px) {
+                        font-size: 1.2rem;
+                    }
                 }
             }
         }
     }
+
+    h1 {
+        font-size: 2.5rem;
+        color: #333;
+        text-align: center;
+        margin-bottom: 2rem;
+
+        @media (max-width: 768px) {
+            font-size: 2rem;
+        }
+    }
 `;
 
-export default Dashboard
+export default Dashboard;
+
