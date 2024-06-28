@@ -142,6 +142,7 @@ const DashboardStyled = styled.div`
                 border: 2px solid #FFFFFF;
                 box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
                 border-radius: 20px;
+                margin-bottom:500px;
                 padding: 1rem;
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
 
@@ -169,6 +170,7 @@ const DashboardStyled = styled.div`
 
                 @media (max-width: 768px) {
                     grid-column: span 1;
+                    margin-bottom:2rem;
                 }
             }
 
@@ -177,6 +179,7 @@ const DashboardStyled = styled.div`
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                margin-bottom:500px;
 
                 @media (max-width: 768px) {
                     grid-column: span 1;
@@ -193,6 +196,7 @@ const DashboardStyled = styled.div`
 
                     @media (max-width: 480px) {
                         font-size: 2rem;
+                        margin-bottom:0.1rem;
                     }
                 }
             }
@@ -214,6 +218,7 @@ const DashboardStyled = styled.div`
                 grid-column: 1 / -1;
                 margin-top: 1rem;
                 gap: 1rem;
+                
             }
 
             h2 {
