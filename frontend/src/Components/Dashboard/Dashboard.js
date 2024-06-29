@@ -69,7 +69,12 @@ function Dashboard() {
     )
 }
 const DashboardStyled = styled.div`
- .stats-con {
+ background: #1e1e1e; /* Dark background color */
+    color: #f0f0f0; /* Light text color */
+    min-height: 100vh;
+    padding: 2rem;
+
+    .stats-con {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 2rem;
@@ -90,6 +95,11 @@ const DashboardStyled = styled.div`
         .chart-con {
             grid-column: 1 / 2;
             overflow: hidden; /* Prevent overflowing */
+            height: 400px; /* Adjust height */
+            background: #2a2a2a; /* Darker background for the chart */
+            border-radius: 20px;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 
             @media (max-width: 1200px) {
                 grid-column: 1 / -1;
@@ -138,22 +148,22 @@ const DashboardStyled = styled.div`
             }
 
             .income, .expense, .balance {
-                background: #FCF6F9;
-                border: 2px solid #FFFFFF;
-                box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
+                background: #2a2a2a; /* Darker background for the sections */
+                border: 2px solid #333; /* Dark border */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
                 border-radius: 20px;
-                margin-bottom:500px;
                 padding: 1rem;
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
 
                 &:hover {
                     transform: translateY(-5px);
-                    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
                 }
 
                 p {
                     font-size: 2.5rem;
                     font-weight: 700;
+                    color: #f0f0f0; /* Light text color */
 
                     @media (max-width: 768px) {
                         font-size: 2rem;
@@ -165,29 +175,20 @@ const DashboardStyled = styled.div`
                 }
             }
 
-            .income, .expense, .balance {
-                grid-column: span 1;
-
-                @media (max-width: 768px) {
-                    grid-column: span 1;
-                    margin-bottom:2rem;
-                }
-            }
-
             .balance {
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                margin-bottom:500px;
+                grid-column: span 3; /* Span across all columns */
 
-                @media (max-width: 768px) {
+                @media (max-width: 1200px) {
                     grid-column: span 1;
                 }
 
                 p {
-                    color: var(--color-green);
-                    opacity: 0.6;
+                    color: #4caf50; /* Green color for balance */
+                    opacity: 0.8;
                     font-size: 3rem;
 
                     @media (max-width: 768px) {
@@ -196,7 +197,6 @@ const DashboardStyled = styled.div`
 
                     @media (max-width: 480px) {
                         font-size: 2rem;
-                        margin-bottom:0.1rem;
                     }
                 }
             }
@@ -204,6 +204,10 @@ const DashboardStyled = styled.div`
 
         .history-con {
             grid-column: 2 / 3;
+            background: #2a2a2a; /* Darker background for the history */
+            border-radius: 20px;
+            padding: 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 
             @media (max-width: 1200px) {
                 grid-column: 1 / -1;
@@ -218,7 +222,6 @@ const DashboardStyled = styled.div`
                 grid-column: 1 / -1;
                 margin-top: 1rem;
                 gap: 1rem;
-                
             }
 
             h2 {
@@ -227,7 +230,7 @@ const DashboardStyled = styled.div`
                 align-items: center;
                 justify-content: space-between;
                 font-size: 1.5rem;
-                color: #333;
+                color: #f0f0f0; /* Light text color */
 
                 @media (max-width: 768px) {
                     font-size: 1.2rem;
@@ -241,11 +244,11 @@ const DashboardStyled = styled.div`
             .salary-title {
                 font-size: 1.2rem;
                 margin-top: 2rem;
-                color: #555;
+                color: #f0f0f0; /* Light text color */
 
                 span {
                     font-size: 1.8rem;
-                    color: #333;
+                    color: #f0f0f0; /* Light text color */
 
                     @media (max-width: 768px) {
                         font-size: 1.5rem;
@@ -258,9 +261,9 @@ const DashboardStyled = styled.div`
             }
 
             .salary-item {
-                background: #FCF6F9;
-                border: 2px solid #FFFFFF;
-                box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
+                background: #333; /* Dark background for salary items */
+                border: 2px solid #444; /* Dark border */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
                 padding: 1rem;
                 border-radius: 20px;
                 display: flex;
@@ -270,7 +273,7 @@ const DashboardStyled = styled.div`
 
                 &:hover {
                     transform: translateY(-5px);
-                    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
                 }
 
                 p {
@@ -291,7 +294,7 @@ const DashboardStyled = styled.div`
 
     h1 {
         font-size: 2.5rem;
-        color: #333;
+        color: #f0f0f0; /* Light text color */
         text-align: center;
         margin-bottom: 2rem;
 
