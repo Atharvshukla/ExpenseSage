@@ -38,15 +38,36 @@ const HistoryStyled = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    .history-item{
-        background: #FCF6F9;
-        border: 2px solid #FFFFFF;
-        box-shadow: 0px px 15px rgba(0, 0, 0, 0.06);
+
+    .history-item {
+        background: #2a2a2a; /* Darker background for the history items */
+        border: 2px solid #333; /* Dark border */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         padding: 1rem;
         border-radius: 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        p {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: #f0f0f0; /* Light text color */
+
+            @media (max-width: 768px) {
+                font-size: 1.4rem;
+            }
+
+            @media (max-width: 480px) {
+                font-size: 1.2rem;
+            }
+        }
     }
 `;
 
