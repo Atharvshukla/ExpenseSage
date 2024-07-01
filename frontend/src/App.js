@@ -7,6 +7,7 @@ import Navigation from './Components/Navigation/Navigation';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Income from './Components/Income/Income.js';
 import Expenses from './Components/Expenses/Expenses';
+import Advise from './Components/advise/advise';
 import { useGlobalContext } from './context/globalContext';
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
         return <Income />;
       case 4: 
         return <Expenses />;
+      case 5: 
+        return <Advise />;
       default: 
         return <Dashboard />;
     }
