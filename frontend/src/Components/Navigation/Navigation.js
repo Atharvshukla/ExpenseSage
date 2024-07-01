@@ -5,36 +5,67 @@ import { signout } from '../../utils/Icons'
 import { menuItems } from '../../utils/menuItems'
 
 function Navigation({active, setActive}) {
-    
+    const [isNavVisible, setIsNavVisible] = useState(false);
+
+    const handleNavToggle = () => {
+        setIsNavVisible(!isNavVisible);
+    };
+
     return (
-        <NavStyled>
-            <div className="user-con">
-                <img src={avatar} alt="" />
-                <div className="text">
-                    <h2>Mike</h2>
-                    <p>Your Money</p>
+        <>
+            <NavToggle onClick={handleNavToggle}>
+                ☰
+            </NavToggle>
+            <NavStyled isNavVisible={isNavVisible}>
+                <div className="user-con">
+                    <img src={avatar} alt="" />
+                    <div className="text">
+                        <h2>Mike</h2>
+                        <p>Your Money</p>
+                    </div>
                 </div>
-            </div>
-            <ul className="menu-items">
-                {menuItems.map((item) => {
-                    return <li
-                        key={item.id}
-                        onClick={() => setActive(item.id)}
-                        className={active === item.id ? 'active': ''}
-                    >
-                        {item.icon}
-                        <span>{item.title}</span>
+                <ul className="menu-items">
+                    {menuItems.map((item) => {
+                        return <li
+                            key={item.id}
+                            onClick={() => {
+                                setActive(item.id);
+                                setIsNavVisible(false);
+                            }}
+                            className={active === item.id ? 'active': ''}
+                        >
+                            {item.icon}
+                            <span>{item.title}</span>
+                        </li>
+                    })}
+                </ul>
+                <div className="bottom-nav">
+                    <li>
+                        {signout} Sign Out
                     </li>
-                })}
-            </ul>
-            <div className="bottom-nav">
-                <li>
-                    {signout} Sign Out
-                </li>
-            </div>
-        </NavStyled>
+                </div>
+            </NavStyled>
+        </>
     )
 }
+
+const NavToggle = styled.button`
+    display: none;
+    position: fixed;
+    top: 1rem;
+    left: 1rem;
+    background: rgba(252, 246, 249, 0.78);
+    border: 3px solid #FFFFFF;
+    border-radius: 50%;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1000;
+
+    @media (max-width: 480px) {
+        display: block;
+    }
+`;
 
 const NavStyled = styled.nav`
     padding: 2rem 1.5rem;
@@ -48,6 +79,20 @@ const NavStyled = styled.nav`
     flex-direction: column;
     justify-content: space-between;
     gap: 2rem;
+    position: relative;
+    z-index: 999;
+
+    @media (max-width: 480px) {
+        position: fixed;
+        top: 0;
+        left: ${props => (props.isNavVisible ? '0' : '-100%')};
+        width: 100%;
+        height: 100%;
+        background: rgba(252, 246, 249, 0.95);
+        transition: left 0.3s ease-in-out;
+        padding: 2rem;
+    }
+
     .user-con{
         height: 100px;
         display: flex;
@@ -112,4 +157,4 @@ const NavStyled = styled.nav`
     }
 `;
 
-export default Navigation
+export default Navigation;
