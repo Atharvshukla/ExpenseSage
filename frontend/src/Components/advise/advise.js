@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { useGlobalContext } from '../../context/globalContext';
 import { InnerLayout } from '../../styles/Layouts';
-
+import Form from '../Form/Form';
 import IncomeItem from '../IncomeItem/IncomeItem';
-
+import ExpenseForm from './adviseForm';
 
 function Expenses() {
     const {addIncome,expenses, getExpenses, deleteExpense, totalExpenses} = useGlobalContext()
@@ -15,9 +15,9 @@ function Expenses() {
     return (
         <ExpenseStyled>
             <InnerLayout>
-                <h1>Expenses</h1>
-                <h2 className="total-income">Total Expense: <span>${totalExpenses()}</span></h2>
-                {/* <div className="income-content">
+                <h1>Advise</h1>
+                <br></br>
+                <div className="income-content">
                     <div className="form-container">
                         <ExpenseForm />
                     </div>
@@ -39,7 +39,7 @@ function Expenses() {
                             />
                         })}
                     </div>
-                </div> */}
+                </div>
             </InnerLayout>
         </ExpenseStyled>
     )
