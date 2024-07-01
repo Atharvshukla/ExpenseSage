@@ -40,8 +40,8 @@ const HistoryStyled = styled.div`
     gap: 1rem;
 
     .history-item {
-        background: #2a2a2a; /* Darker background for the history items */
-        border: 2px solid #333; /* Dark border */
+        background: #f9f9f9;
+        border: 2px solid #ddd;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         padding: 1rem;
         border-radius: 20px;
