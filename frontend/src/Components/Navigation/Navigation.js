@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import avatar from '../../img/avatar.png'
-import { signout } from '../../utils/Icons'
-import { menuItems } from '../../utils/menuItems'
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import avatar from '../../img/avatar.png';
+import { signout } from '../../utils/Icons';
+import { menuItems } from '../../utils/menuItems';
 
-function Navigation({active, setActive}) {
+function Navigation({ active, setActive }) {
     const [isNavVisible, setIsNavVisible] = useState(false);
 
     const handleNavToggle = () => {
@@ -25,19 +25,19 @@ function Navigation({active, setActive}) {
                     </div>
                 </div>
                 <ul className="menu-items">
-                    {menuItems.map((item) => {
-                        return <li
+                    {menuItems.map((item) => (
+                        <li
                             key={item.id}
                             onClick={() => {
                                 setActive(item.id);
                                 setIsNavVisible(false);
                             }}
-                            className={active === item.id ? 'active': ''}
+                            className={active === item.id ? 'active' : ''}
                         >
                             {item.icon}
                             <span>{item.title}</span>
                         </li>
-                    })}
+                    ))}
                 </ul>
                 <div className="bottom-nav">
                     <li>
@@ -46,7 +46,7 @@ function Navigation({active, setActive}) {
                 </div>
             </NavStyled>
         </>
-    )
+    );
 }
 
 const NavToggle = styled.button`
@@ -62,7 +62,7 @@ const NavToggle = styled.button`
     cursor: pointer;
     z-index: 1000;
 
-    @media (max-width: 480px) {
+    @media (max-width: 780px) {
         display: block;
     }
 `;
@@ -81,6 +81,17 @@ const NavStyled = styled.nav`
     gap: 2rem;
     position: relative;
     z-index: 999;
+
+    @media (max-width: 780px) {
+        position: fixed;
+        top: 0;
+        left: ${props => (props.isNavVisible ? '0' : '-100%')};
+        width: 100%;
+        height: 100%;
+        background: rgba(252, 246, 249, 0.95);
+        transition: left 0.3s ease-in-out;
+        padding: 2rem;
+    }
 
     @media (max-width: 480px) {
         position: fixed;
