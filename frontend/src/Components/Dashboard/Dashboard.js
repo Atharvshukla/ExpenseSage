@@ -7,7 +7,7 @@ import { dollar } from '../../utils/Icons';
 import Chart from '../Chart/Chart';
 
 function Dashboard() {
-    const {totalExpenses,incomes, expenses, totalIncome, totalBalance, getIncomes, getExpenses } = useGlobalContext()
+    const { totalExpenses, incomes, expenses, totalIncome, totalBalance, getIncomes, getExpenses } = useGlobalContext()
 
     useEffect(() => {
         getIncomes()
@@ -16,61 +16,62 @@ function Dashboard() {
 
     return (
         <DashboardStyled>
-        <InnerLayout>
-            <h1>All Transactions</h1>
-            <div className="stats-con">
-                <div className="chart-con">
-                    <Chart />
+            <InnerLayout>
+                <h1>All Transactions</h1>
+                <div className="stats-con">
+                    <div className="chart-con">
+                        <Chart />
+                    </div>
+                    <div className="amount-con">
+                        <div className="income">
+                            <h2>Total Income</h2>
+                            <p>
+                                {dollar} {totalIncome()}
+                            </p>
+                        </div>
+                        <div className="expense">
+                            <h2>Total Expense</h2>
+                            <p>
+                                {dollar} {totalExpenses()}
+                            </p>
+                        </div>
+                        <div className="balance">
+                            <h2>Total Balance</h2>
+                            <p>
+                                {dollar} {totalBalance()}
+                            </p>
+                        </div>
+                    </div>
+                    <div className="history-con">
+                        <History />
+                        <h2 className="salary-title">Min <span>Salary</span>Max</h2>
+                        <div className="salary-item">
+                            <p>
+                                ${Math.min(...incomes.map(item => item.amount))}
+                            </p>
+                            <p>
+                                ${Math.max(...incomes.map(item => item.amount))}
+                            </p>
+                        </div>
+                        <h2 className="salary-title">Min <span>Expense</span>Max</h2>
+                        <div className="salary-item">
+                            <p>
+                                ${Math.min(...expenses.map(item => item.amount))}
+                            </p>
+                            <p>
+                                ${Math.max(...expenses.map(item => item.amount))}
+                            </p>
+                        </div>
+                    </div>
                 </div>
-                <div className="amount-con">
-                    <div className="income">
-                        <h2>Total Income</h2>
-                        <p>
-                            {dollar} {totalIncome()}
-                        </p>
-                    </div>
-                    <div className="expense">
-                        <h2>Total Expense</h2>
-                        <p>
-                            {dollar} {totalExpenses()}
-                        </p>
-                    </div>
-                    <div className="balance">
-                        <h2>Total Balance</h2>
-                        <p>
-                            {dollar} {totalBalance()}
-                        </p>
-                    </div>
-                </div>
-                <div className="history-con">
-                    <History />
-                    <h2 className="salary-title">Min <span>Salary</span>Max</h2>
-                    <div className="salary-item">
-                        <p>
-                            ${Math.min(...incomes.map(item => item.amount))}
-                        </p>
-                        <p>
-                            ${Math.max(...incomes.map(item => item.amount))}
-                        </p>
-                    </div>
-                    <h2 className="salary-title">Min <span>Expense</span>Max</h2>
-                    <div className="salary-item">
-                        <p>
-                            ${Math.min(...expenses.map(item => item.amount))}
-                        </p>
-                        <p>
-                            ${Math.max(...expenses.map(item => item.amount))}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </InnerLayout>
-    </DashboardStyled>
+            </InnerLayout>
+        </DashboardStyled>
     )
 }
+
 const DashboardStyled = styled.div`
- background: #1e1e1e; /* Dark background color */
-    color: #f0f0f0; /* Light text color */
+    background: rgb(249,237,241); /* Light background color */
+    color: #1e1e1e; /* Dark text color */
     min-height: 100vh;
     padding: 2rem;
 
@@ -96,10 +97,10 @@ const DashboardStyled = styled.div`
             grid-column: 1 / 2;
             overflow: hidden; /* Prevent overflowing */
             height: 400px; /* Adjust height */
-            background: #2a2a2a; /* Darker background for the chart */
+            background: #ffffff; /* Light background for the chart */
             border-radius: 20px;
             padding: 1rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
             @media (max-width: 1200px) {
                 grid-column: 1 / -1;
@@ -148,22 +149,22 @@ const DashboardStyled = styled.div`
             }
 
             .income, .expense, .balance {
-                background: #2a2a2a; /* Darker background for the sections */
-                border: 2px solid #333; /* Dark border */
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                background: #ffffff; /* Light background for the sections */
+                border: 2px solid #ddd; /* Light border */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                 border-radius: 20px;
                 padding: 1rem;
                 transition: transform 0.3s ease, box-shadow 0.3s ease;
 
                 &:hover {
                     transform: translateY(-5px);
-                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
                 }
 
                 p {
                     font-size: 2.5rem;
                     font-weight: 700;
-                    color: #f0f0f0; /* Light text color */
+                    color: #1e1e1e; /* Dark text color */
 
                     @media (max-width: 768px) {
                         font-size: 2rem;
@@ -204,10 +205,10 @@ const DashboardStyled = styled.div`
 
         .history-con {
             grid-column: 2 / 3;
-            background: #2a2a2a; /* Darker background for the history */
+            background: #ffffff; /* Light background for the history */
             border-radius: 20px;
             padding: 1rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
             @media (max-width: 1200px) {
                 grid-column: 1 / -1;
@@ -230,7 +231,7 @@ const DashboardStyled = styled.div`
                 align-items: center;
                 justify-content: space-between;
                 font-size: 1.5rem;
-                color: #f0f0f0; /* Light text color */
+                color: #1e1e1e; /* Dark text color */
 
                 @media (max-width: 768px) {
                     font-size: 1.2rem;
@@ -244,11 +245,11 @@ const DashboardStyled = styled.div`
             .salary-title {
                 font-size: 1.2rem;
                 margin-top: 2rem;
-                color: #f0f0f0; /* Light text color */
+                color: #1e1e1e; /* Dark text color */
 
                 span {
                     font-size: 1.8rem;
-                    color: #f0f0f0; /* Light text color */
+                    color: #1e1e1e; /* Dark text color */
 
                     @media (max-width: 768px) {
                         font-size: 1.5rem;
@@ -261,9 +262,9 @@ const DashboardStyled = styled.div`
             }
 
             .salary-item {
-                background: #333; /* Dark background for salary items */
-                border: 2px solid #444; /* Dark border */
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+                background: #f9f9f9; /* Light background for salary items */
+                border: 2px solid #ddd; /* Light border */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
                 padding: 1rem;
                 border-radius: 20px;
                 display: flex;
@@ -273,7 +274,7 @@ const DashboardStyled = styled.div`
 
                 &:hover {
                     transform: translateY(-5px);
-                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+                    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
                 }
 
                 p {
@@ -294,7 +295,7 @@ const DashboardStyled = styled.div`
 
     h1 {
         font-size: 2.5rem;
-        color: #f0f0f0; /* Light text color */
+        color: #1e1e1e; /* Dark text color */
         text-align: center;
         margin-bottom: 2rem;
 
@@ -309,4 +310,3 @@ const DashboardStyled = styled.div`
 `;
 
 export default Dashboard;
-
