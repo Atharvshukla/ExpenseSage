@@ -11,7 +11,7 @@ const PORT = process.env.PORT
 //middlewares
 app.use(express.json())
 app.use(cors({
-    origin:["https://final-project-ten-theta.vercel.app"],
+    origin:["https://expensesage.vercel.app"],
     methods:["GET","POST","PUT","DELETE"],
     credentials:true
 }))
