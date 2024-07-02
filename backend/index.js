@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const { db } = require('./db/db');
+const { db } = require('./api/db/db');
 const { readdirSync } = require('fs');
 require('dotenv').config();
 
