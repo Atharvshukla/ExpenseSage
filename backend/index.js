@@ -17,8 +17,8 @@ app.use(cors({
 
 // Routes
 try {
-  readdirSync('./routes').forEach((route) => {
-    app.use('/api/v1', require(`./routes/${route}`));
+  readdirSync('./api/routes').forEach((route) => {
+    app.use('/api/v1', require(`./api/routes/${route}`));
   });
 } catch (err) {
   console.error('Error loading routes:', err);
