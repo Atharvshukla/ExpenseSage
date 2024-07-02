@@ -1,30 +1,35 @@
-const express = require('express')
+const express = require('express');
 const cors = require('cors');
-const {db}=require('./db/db');
-const app = express()
-const {readdirSync} = require('fs')
+const { db } = require('./db/db');
+const { readdirSync } = require('fs');
+require('dotenv').config();
 
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-require('dotenv').config()
-
-const PORT = process.env.PORT
-//middlewares
-app.use(express.json())
+// Middlewares
+app.use(express.json());
 app.use(cors({
-    origin:["https://expensesage.vercel.app"],
-    methods:["GET","POST","PUT","DELETE"],
-    credentials:true
-}))
-//routes
-readdirSync('./routes').map((route) => app.use('/api/v1', require('./routes/' + route)))
+  origin: ["https://expensesage.vercel.app"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
-
-const server = () => {
-    db()
-    app.listen(PORT, () => {
-        console.log('listening to port:', PORT)
-    })
-    
+// Routes
+try {
+  readdirSync('./routes').forEach((route) => {
+    app.use('/api/v1', require(`./routes/${route}`));
+  });
+} catch (err) {
+  console.error('Error loading routes:', err);
 }
 
-server()
+// Server Initialization
+const server = () => {
+  db();
+  app.listen(PORT, () => {
+    console.log('Listening on port:', PORT);
+  });
+};
+
+server();
