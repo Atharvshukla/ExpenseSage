@@ -27,8 +27,9 @@ export const menuItems = [
     },
     {
         id: 5,
-        title: "Investment Advice",
-        icon: expenses,
-        link: "/dashboard",
-    },
+        title: 'Investment Advice',
+        icon: <i className="fas fa-chart-line"></i>,
+        external: true,  // Add this property
+        link: 'https://expensesage-advise.streamlit.app/'  // Add the external link
+      },
 ]

@@ -11,6 +11,15 @@ function Navigation({ active, setActive }) {
         setIsNavVisible(!isNavVisible);
     };
 
+    const handleMenuItemClick = (item) => {
+        if (item.external) {
+            window.location.href = item.link;
+        } else {
+            setActive(item.id);
+            setIsNavVisible(false);
+        }
+    };
+
     return (
         <>
             <NavToggle onClick={handleNavToggle}>
@@ -28,10 +37,7 @@ function Navigation({ active, setActive }) {
                     {menuItems.map((item) => (
                         <li
                             key={item.id}
-                            onClick={() => {
-                                setActive(item.id);
-                                setIsNavVisible(false);
-                            }}
+                            onClick={() => handleMenuItemClick(item)}
                             className={active === item.id ? 'active' : ''}
                         >
                             {item.icon}
