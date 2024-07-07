@@ -68,7 +68,7 @@ const ExpenseStyled = styled.div`
     }
     .income-content{
         display: flex;
-        gap: 2rem;
+        gap: 3rem;
         .incomes{
             flex: 1;
         }
