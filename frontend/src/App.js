@@ -9,6 +9,8 @@ import Income from './Components/Income/Income.js';
 import Expenses from './Components/Expenses/Expenses';
 import Advise from './Components/advise/advise';
 import { useGlobalContext } from './context/globalContext';
+import Register from './Components/Home/register.js';
+import Login from './Components/Home/login.js'
 
 function App() {
   const [active, setActive] = useState(1);
@@ -28,6 +30,10 @@ function App() {
         return <Expenses />;
       case 5: 
         return <Advise />;
+      case 6:
+        return <Register/>
+      case 7:
+        return<Login/>
       default: 
         return <Dashboard />;
     }

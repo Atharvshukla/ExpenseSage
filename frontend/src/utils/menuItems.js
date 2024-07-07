@@ -32,4 +32,17 @@ export const menuItems = [
         external: true,  // Add this property
         link: 'https://expensesage-advise.streamlit.app/'  // Add the external link
       },
+      {
+        id: 6,
+        title: "Register",
+        icon: expenses,
+        link: "/register",
+    },
+    {
+        id:7,
+        title:"Login",
+        icon:expenses,
+        link:"/login"
+    },
+      
 ]
