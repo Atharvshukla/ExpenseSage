@@ -67,4 +67,4 @@ const LoginStyled = styled.div`
   }
 `;
 
-module.exports = Login;
+export default Login;

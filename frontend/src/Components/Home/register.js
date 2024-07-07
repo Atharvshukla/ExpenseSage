@@ -99,4 +99,4 @@ const RegisterStyled = styled.div`
   }
 `;
 
-module.exports = Register;
+export default Register;
