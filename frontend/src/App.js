@@ -1,89 +1,29 @@
-import React, {useState, useMemo} from 'react';
-import styled from "styled-components";
-import bg from './img/bg.png';
-import {MainLayout} from './styles/Layouts';
-import Orb from './Components/Orb/Orb';
-import Navigation from './Components/Navigation/Navigation';
-import Dashboard from './Components/Dashboard/Dashboard';
-import Income from './Components/Income/Income.js';
-import Expenses from './Components/Expenses/Expenses';
-import Advise from './Components/advise/advise';
-import { useGlobalContext } from './context/globalContext';
-import Register from './Components/Home/register.js';
-import Login from './Components/Home/login.js'
+import React from 'react';
+import "./App.css";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Login from './Pages/Auth/Login';
+import Register from './Pages/Auth/Register';
+// App.js
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Home from './Pages/Home/Home';
+import SetAvatar from './Pages/Avatar/setAvatar';
 
-function App() {
-  const [active, setActive] = useState(1);
 
-  const global = useGlobalContext();
-  console.log(global);
 
-  const displayData = () => {
-    switch(active){
-      case 1:
-        return <Dashboard />;
-      case 2:
-        return <Dashboard />;
-      case 3:
-        return <Income />;
-      case 4: 
-        return <Expenses />;
-      case 5: 
-        return <Advise />;
-      case 6:
-        return <Register/>
-      case 7:
-        return<Login/>
-      default: 
-        return <Dashboard />;
-    }
-  };
-
-  const orbMemo = useMemo(() => {
-    return <Orb />;
-  }, []);
-
+const App = () => {
   return (
-    <AppStyled bg={bg} className="App">
-      {orbMemo}
-      <main>
-      <MainLayout>
-        <Navigation active={active} setActive={setActive} />
-          {displayData()}
-      </MainLayout>
-      </main>
-
-    </AppStyled>
-  );
+    
+      <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/setAvatar" element={<SetAvatar />} />
+        </Routes>
+      </BrowserRouter>
+      </div>
+  )
 }
 
-const AppStyled = styled.div`
-  height: 100vh;
-  background-image: url(${props => props.bg});
-  position: relative;
-
-  main{
-    flex: 1;
-    background: rgba(252, 246, 249, 0.78);
-    border: 3px solid #FFFFFF;
-    backdrop-filter: blur(4.5px);
-    border-radius: 32px;
-    overflow-x: hidden;
-    &::-webkit-scrollbar{
-      width: 0;
-    }
-  }
-
-  @media (max-width: 480px) {
-    main {
-      border-radius: 16px;
-      padding: 10px;
-    }
-
-    .App {
-      flex-direction: column;
-    }
-  }
-`;
-
-export default App;
+export default App
