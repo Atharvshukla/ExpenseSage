@@ -20,7 +20,7 @@ connectDB();
 app.use(express.json());
 app.use(
   cors({
-    origin: "*", // Allow all origins
+    origin: "https://expensesage.vercel.app", // Allow all origins
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
