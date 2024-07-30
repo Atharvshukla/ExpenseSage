@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Navbar, Nav, Button } from 'react-bootstrap';
+import { Navbar, Nav, Button, Container } from 'react-bootstrap';
 import "./style.css";
 import { useNavigate } from 'react-router-dom';
 import Particles from "react-tsparticles";
@@ -85,36 +85,32 @@ const Header = () => {
           }}
         />
         <Navbar className="navbarCSS" collapseOnSelect expand="lg" style={{position: 'relative', zIndex: "2 !important"}}>
-          <Navbar.Brand href="/" className="text-white navTitle">Expense Management System</Navbar.Brand>
-          <Navbar.Toggle
-            aria-controls="basic-navbar-nav"
-            style={{ backgroundColor: "transparent", borderColor: "transparent" }}
-          >
-            <span
-              className="navbar-toggler-icon"
-              style={{
-                background: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`,
-              }}
-            ></span>
-          </Navbar.Toggle>
-          <div>
-            <Navbar.Collapse id="responsive-navbar-nav" style={{color: "white"}}>
-              {user ? (
-                <>
-                  <Nav>
-                    <Button variant="primary" onClick={handleShowInvestmentAdvice} className="ml-2">Investment Advice</Button>
-                    <Button variant="primary" onClick={handleShowLogout} className="ml-2">Logout</Button>
-                  </Nav>
-                </>
-              ) : (
-                <>
-                  <Nav>
-                    <Button variant="primary" onClick={handleShowLogin} className="ml-2">Login</Button>
-                  </Nav>
-                </>
-              )}
+          <Container>
+            <Navbar.Brand href="/" className="text-white navTitle">Expense Management System</Navbar.Brand>
+            <Navbar.Toggle
+              aria-controls="basic-navbar-nav"
+              style={{ backgroundColor: "transparent", borderColor: "transparent" }}
+            >
+              <span
+                className="navbar-toggler-icon"
+                style={{
+                  background: `url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e")`,
+                }}
+              ></span>
+            </Navbar.Toggle>
+            <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
+              <Nav className="d-flex align-items-center">
+                {user ? (
+                  <>
+                    <Button variant="primary" onClick={handleShowInvestmentAdvice} className="ml-lg-3 mb-2 mb-lg-0">Investment Advice</Button>
+                    <Button variant="primary" onClick={handleShowLogout} className="ml-lg-3">Logout</Button>
+                  </>
+                ) : (
+                  <Button variant="primary" onClick={handleShowLogin} className="ml-lg-3">Login</Button>
+                )}
+              </Nav>
             </Navbar.Collapse>
-          </div>
+          </Container>
         </Navbar>
       </div>
     </>
