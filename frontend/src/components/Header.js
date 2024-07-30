@@ -86,7 +86,7 @@ const Header = () => {
         />
         <Navbar className="navbarCSS" collapseOnSelect expand="lg" style={{position: 'relative', zIndex: "2 !important"}}>
           <Container>
-            <Navbar.Brand href="/" className="text-white navTitle">Expense Management System</Navbar.Brand>
+            <Navbar.Brand href="/" className="text-white navTitle">ExpenseSage</Navbar.Brand>
             <Navbar.Toggle
               aria-controls="basic-navbar-nav"
               style={{ backgroundColor: "transparent", borderColor: "transparent" }}
