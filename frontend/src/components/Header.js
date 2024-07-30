@@ -102,11 +102,11 @@ const Header = () => {
               <Nav className="d-flex align-items-center">
                 {user ? (
                   <>
-                    <Button variant="primary" onClick={handleShowInvestmentAdvice} className="ml-lg-3 mb-2 mb-lg-0">Investment Advice</Button>
-                    <Button variant="primary" onClick={handleShowLogout} className="ml-lg-3">Logout</Button>
+                    <Button variant="primary" onClick={handleShowInvestmentAdvice} className="mx-2 my-2">Investment Advice</Button>
+                    <Button variant="primary" onClick={handleShowLogout} className="mx-2 my-2">Logout</Button>
                   </>
                 ) : (
-                  <Button variant="primary" onClick={handleShowLogin} className="ml-lg-3">Login</Button>
+                  <Button variant="primary" onClick={handleShowLogin} className="mx-2 my-2">Login</Button>
                 )}
               </Nav>
             </Navbar.Collapse>
