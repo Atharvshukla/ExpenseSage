@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Navbar, Nav, Button, Container } from 'react-bootstrap';
+import { Navbar, Nav, Button, Container, Modal, Form } from 'react-bootstrap';
 import "./style.css";
 import { useNavigate } from 'react-router-dom';
 import Particles from "react-tsparticles";
@@ -7,12 +7,14 @@ import { loadFull } from "tsparticles";
 
 const Header = () => {
   const navigate = useNavigate();
-
-  const handleShowLogin = () => {
-    navigate("/login");
-  };
-
+  
   const [user, setUser] = useState();
+  const [showTaxModal, setShowTaxModal] = useState(false);
+  const [tax, setTax] = useState({
+    income: "",
+    amountOldRegime: 0,
+    amountNewRegime: 0,
+  });
 
   useEffect(() => {
     if (localStorage.getItem("user")) {
@@ -21,13 +23,44 @@ const Header = () => {
     }
   }, []);
 
+  const handleShowLogin = () => {
+    navigate("/login");
+  };
+
   const handleShowLogout = () => {
     localStorage.removeItem("user");
     navigate("/login");
   };
 
-  const handleShowInvestmentAdvice = () => {
-    window.location.href = "https://expensesage-advise.streamlit.app";
+  const handleShowTaxModal = () => setShowTaxModal(true);
+  const handleCloseTaxModal = () => setShowTaxModal(false);
+
+  const handleCalculateTax = () => {
+    let amountOldRegime = 0;
+    let amountNewRegime = 0;
+    const income = parseFloat(tax.income);
+
+    if (isNaN(income)) return;
+
+    // Old Regime calculation
+    if (income <= 250000) amountOldRegime = 0;
+    else if (income <= 500000) amountOldRegime = (income - 250000) * 0.05;
+    else if (income <= 750000) amountOldRegime = 12500 + (income - 500000) * 0.1;
+    else if (income <= 1000000) amountOldRegime = 37500 + (income - 750000) * 0.15;
+    else if (income <= 1250000) amountOldRegime = 75000 + (income - 1000000) * 0.2;
+    else if (income <= 1500000) amountOldRegime = 125000 + (income - 1250000) * 0.25;
+    else amountOldRegime = 187500 + (income - 1500000) * 0.3;
+
+    // New Regime calculation
+    if (income <= 250000) amountNewRegime = 0;
+    else if (income <= 500000) amountNewRegime = (income - 250000) * 0.05;
+    else if (income <= 750000) amountNewRegime = 12500 + (income - 500000) * 0.1;
+    else if (income <= 1000000) amountNewRegime = 37500 + (income - 750000) * 0.15;
+    else if (income <= 1250000) amountNewRegime = 75000 + (income - 1000000) * 0.2;
+    else if (income <= 1500000) amountNewRegime = 125000 + (income - 1250000) * 0.25;
+    else amountNewRegime = 187500 + (income - 1500000) * 0.3;
+
+    setTax({ ...tax, amountOldRegime, amountNewRegime });
   };
 
   const particlesInit = useCallback(async (engine) => {
@@ -84,7 +117,7 @@ const Header = () => {
             bottom: 0,
           }}
         />
-        <Navbar className="navbarCSS" collapseOnSelect expand="lg" style={{position: 'relative', zIndex: "2 !important"}}>
+        <Navbar className="navbarCSS" collapseOnSelect expand="lg" style={{ position: 'relative', zIndex: "2 !important" }}>
           <Container>
             <Navbar.Brand href="/" className="text-white navTitle">ExpenseSage</Navbar.Brand>
             <Navbar.Toggle
@@ -102,7 +135,7 @@ const Header = () => {
               <Nav className="d-flex align-items-center">
                 {user ? (
                   <>
-                    <Button variant="primary" onClick={handleShowInvestmentAdvice} className="mx-2 my-2">Investment Advice</Button>
+                    <Button variant="primary" onClick={handleShowTaxModal} className="mx-2 my-2">Tax Calculator</Button>
                     <Button variant="primary" onClick={handleShowLogout} className="mx-2 my-2">Logout</Button>
                   </>
                 ) : (
@@ -113,6 +146,34 @@ const Header = () => {
           </Container>
         </Navbar>
       </div>
+
+      <Modal show={showTaxModal} onHide={handleCloseTaxModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Tax Calculator</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="formIncome">
+              <Form.Label>Income</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Enter your income"
+                value={tax.income}
+                onChange={(e) => setTax({ ...tax, income: e.target.value })}
+              />
+            </Form.Group>
+            <Button variant="primary" onClick={handleCalculateTax}>
+              Calculate Tax
+            </Button>
+          </Form>
+          {tax.income && (
+            <div className="mt-3">
+              <p>Old Regime Tax: ₹{tax.amountOldRegime.toFixed(2)}</p>
+              <p>New Regime Tax: ₹{tax.amountNewRegime.toFixed(2)}</p>
+            </div>
+          )}
+        </Modal.Body>
+      </Modal>
     </>
   );
 };
