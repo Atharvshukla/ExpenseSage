@@ -101,7 +101,7 @@ const Login = () => {
               type: "circle",
             },
             opacity: {
-              value: 0.5,
+              value: 0.6,
               random: true,
             },
             size: {
