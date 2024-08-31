@@ -31,34 +31,35 @@ const Header = () => {
     localStorage.removeItem("user");
     navigate("/login");
   };
-
+  const handleShowInvestmentAdvice = () => {
+    window.location.href = "https://expensesage-advise.streamlit.app";
+  };
   const handleShowTaxModal = () => setShowTaxModal(true);
   const handleCloseTaxModal = () => setShowTaxModal(false);
 
   const handleCalculateTax = () => {
-    let amountOldRegime = 0;
-    let amountNewRegime = 0;
     const income = parseFloat(tax.income);
 
     if (isNaN(income)) return;
 
+    let amountOldRegime = 0;
+    let amountNewRegime = 0;
+
     // Old Regime calculation
     if (income <= 250000) amountOldRegime = 0;
     else if (income <= 500000) amountOldRegime = (income - 250000) * 0.05;
-    else if (income <= 750000) amountOldRegime = 12500 + (income - 500000) * 0.1;
-    else if (income <= 1000000) amountOldRegime = 37500 + (income - 750000) * 0.15;
-    else if (income <= 1250000) amountOldRegime = 75000 + (income - 1000000) * 0.2;
-    else if (income <= 1500000) amountOldRegime = 125000 + (income - 1250000) * 0.25;
-    else amountOldRegime = 187500 + (income - 1500000) * 0.3;
+    else if (income <= 1000000) amountOldRegime = 12500 + (income - 500000) * 0.20;
+    else if (income <= 1250000) amountOldRegime = 112500 + (income - 1000000) * 0.30;
+    else amountOldRegime = 187500 + (income - 1250000) * 0.30;
 
     // New Regime calculation
     if (income <= 250000) amountNewRegime = 0;
     else if (income <= 500000) amountNewRegime = (income - 250000) * 0.05;
-    else if (income <= 750000) amountNewRegime = 12500 + (income - 500000) * 0.1;
+    else if (income <= 750000) amountNewRegime = 12500 + (income - 500000) * 0.10;
     else if (income <= 1000000) amountNewRegime = 37500 + (income - 750000) * 0.15;
-    else if (income <= 1250000) amountNewRegime = 75000 + (income - 1000000) * 0.2;
+    else if (income <= 1250000) amountNewRegime = 75000 + (income - 1000000) * 0.20;
     else if (income <= 1500000) amountNewRegime = 125000 + (income - 1250000) * 0.25;
-    else amountNewRegime = 187500 + (income - 1500000) * 0.3;
+    else amountNewRegime = 187500 + (income - 1500000) * 0.30;
 
     setTax({ ...tax, amountOldRegime, amountNewRegime });
   };
@@ -136,6 +137,7 @@ const Header = () => {
                 {user ? (
                   <>
                     <Button variant="primary" onClick={handleShowTaxModal} className="mx-2 my-2">Tax Calculator</Button>
+                    <Button variant="primary" onClick={handleShowInvestmentAdvice} className="mx-2 my-2">Investment Advice</Button>
                     <Button variant="primary" onClick={handleShowLogout} className="mx-2 my-2">Logout</Button>
                   </>
                 ) : (
